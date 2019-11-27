@@ -23,5 +23,12 @@ namespace Portal.Web.Pages
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
         }
+
+        public string UserError { get; private set; }
+
+        public void OnGetUserError(string message)
+        {
+            UserError = message;
+        }
     }
 }
