@@ -37,7 +37,7 @@ namespace Portal.Web
                 .AddRazorPagesOptions(options =>
                 {
                     options.Conventions.AddPageRoute("/Course", "kurs/{id}/{name}");
-                    options.Conventions.AddPageRoute("/contact", "kontakt");
+                    options.Conventions.AddPageRoute("/contact", "kontakt/{contacttype}");
                 })
                 .AddRazorRuntimeCompilation();
         }

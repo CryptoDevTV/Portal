@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Portal.Shared.Model\Portal.Shared.Model.csproj" />
     <ProjectReference Include="..\Portal.Shared.Services\Portal.Shared.Services.csproj" />
     <ProjectReference Include="..\Portal.Shared.Utils\Portal.Shared.Utils.csproj" />
   </ItemGroup>

@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.Web", "Portal.Web\Portal.Web.csproj", "{1D6B3FCC-F5E9-493C-BF0A-75170828777B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Shared.Services", "Portal.Shared.Services\Portal.Shared.Services.csproj", "{EC4393CD-1531-4B4C-A653-D50C2D122C91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.Shared.Services", "Portal.Shared.Services\Portal.Shared.Services.csproj", "{EC4393CD-1531-4B4C-A653-D50C2D122C91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Shared.Utils", "Portal.Shared.Utils\Portal.Shared.Utils.csproj", "{DBB28EBD-A622-4274-81B6-886D73185BD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.Shared.Utils", "Portal.Shared.Utils\Portal.Shared.Utils.csproj", "{DBB28EBD-A622-4274-81B6-886D73185BD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Shared.Model", "Portal.Shared.Model\Portal.Shared.Model.csproj", "{2A177C68-ABA8-4241-96D0-12BBC329AC2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{DBB28EBD-A622-4274-81B6-886D73185BD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBB28EBD-A622-4274-81B6-886D73185BD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBB28EBD-A622-4274-81B6-886D73185BD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A177C68-ABA8-4241-96D0-12BBC329AC2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A177C68-ABA8-4241-96D0-12BBC329AC2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A177C68-ABA8-4241-96D0-12BBC329AC2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A177C68-ABA8-4241-96D0-12BBC329AC2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

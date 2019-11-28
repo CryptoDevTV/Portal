@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{contacttype}"
 @model ContactModel
 
 <div class="container">
@@ -16,18 +16,18 @@
         <div class="form-group row">
             <label for="f-subject" class="col-sm-2 col-form-label">Temat</label>
             <div class="col-sm-6">
-                <input type="text" id="f-subject" name="subject" class="form-control" aria-describedby="f-subject-help" required>
+                <input type="text" value="@Model.ContactViewModel.Subject" id="f-subject" name="subject" class="form-control" aria-describedby="f-subject-help" readonly>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="f-msg" class="col-sm-2 col-form-label">Wiadomość</label>
             <div class="col-sm-6">
-                <textarea type="text" id="f-msg" name="message" class="form-control" aria-describedby="f-msg-help">&nbsp;</textarea>
+                <textarea type="text" id="f-msg" name="message" class="form-control" aria-describedby="f-msg-help">@Model.ContactViewModel.Message</textarea>
             </div>
         </div>
 
-        <input type="hidden" id="f-contacttype" class="form-control" name="contacttype">
+        <input type="hidden" id="f-contacttype" value="@Model.ContactViewModel.ContactType" class="form-control" name="contacttype">
 
         <div class="btn-group offset-sm-2" role="group">
             <button type="submit" class="btn btn-primary btn-outline-success" id="btn-f-create">Wyślij</button>

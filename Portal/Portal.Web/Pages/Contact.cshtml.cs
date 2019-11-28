@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Portal.Shared.Model.Domain;
 using Portal.Shared.Services.Notifications;
+using Portal.Shared.Utils.Extensions;
 using Portal.Web.ViewModels;
 
 namespace Portal.Web.Pages
@@ -23,9 +25,18 @@ namespace Portal.Web.Pages
             _emailNotification = emailNotification;
         }
 
-        public void OnGet()
-        {
+        public ContactType ContactType { get; set; }
 
+        public void OnGet(int contacttype)
+        {
+            ContactType = (ContactType)contacttype;
+
+            ContactViewModel = new ContactViewModel
+            {
+                Subject = ContactType.GetDescription(),
+                ContactType = ContactType,
+                Message = string.Empty
+            };
         }
 
         [BindProperty]
