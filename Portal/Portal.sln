@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.Shared.Services", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.Shared.Utils", "Portal.Shared.Utils\Portal.Shared.Utils.csproj", "{DBB28EBD-A622-4274-81B6-886D73185BD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Shared.Model", "Portal.Shared.Model\Portal.Shared.Model.csproj", "{2A177C68-ABA8-4241-96D0-12BBC329AC2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.Shared.Model", "Portal.Shared.Model\Portal.Shared.Model.csproj", "{2A177C68-ABA8-4241-96D0-12BBC329AC2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Academia.Web", "Portal.Academia.Web\Portal.Academia.Web.csproj", "{1F21EE52-8298-44EC-A465-145B7CBD888F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{2A177C68-ABA8-4241-96D0-12BBC329AC2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A177C68-ABA8-4241-96D0-12BBC329AC2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A177C68-ABA8-4241-96D0-12BBC329AC2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F21EE52-8298-44EC-A465-145B7CBD888F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F21EE52-8298-44EC-A465-145B7CBD888F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F21EE52-8298-44EC-A465-145B7CBD888F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F21EE52-8298-44EC-A465-145B7CBD888F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
