@@ -1,0 +1,32 @@
+﻿@model Portal.Academia.Web.ViewModels.CoursesViewModel
+
+<div class="row">
+
+    @if (Model.IsOk)
+    {
+        foreach (var course in Model.Courses)
+        {
+            <div class="col-md-5 mb-5">
+                <div class="card h-100">
+                    <img class="card-img-top" src="~/img/cd_gdi_small.png" alt="@course.Name">
+                    <div class="card-body">
+                        <h2 class="card-title">@course.Name</h2>
+                        <p class="card-text text-justify">
+                            @course.Description
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/modules/show/@Model.UserGuid/@course.CourseId" class="btn btn-primary btn-sm btn-outline-success">Wyświetl</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            @Model.Message
+        </div>
+    }
+
+</div>

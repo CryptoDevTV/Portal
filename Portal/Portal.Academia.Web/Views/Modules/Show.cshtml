@@ -1,0 +1,50 @@
+﻿@model Portal.Academia.Web.ViewModels.ModulesViewModel
+
+
+@if (Model.IsOk)
+{
+    foreach (var module in Model.Modules)
+    {
+        <div class="row">
+            <div class="col-md-12 mb-5">
+                <div class="card border-secondary h-100">
+                    <div class="card-header h4">
+                        @module.Name
+                    </div>
+                    <div class="card-body">
+                        
+                        <p class="card-text text-justify font-italic">
+                            @module.Description
+                        </p>
+                    </div>
+                    @if (module.Lessons.Any())
+                    {
+                        <ul class="list-group list-group-flush float-left">
+                            @foreach (var lesson in module.Lessons)
+                            {
+                                <li class="list-group-item"><a href="/lessons/@Model.UserGuid/@Model.CourseId/@lesson.LessonId" target="_self">@lesson.Name</a></li>
+                            }
+                        </ul>
+                    }
+
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        @Model.Message
+    </div>
+}
+
+
+
+<hr />
+
+<div class="row text-center">
+    <div class="col-md-8 mx-auto">
+        <a class="btn btn-primary btn-sm btn-outline-success" href="/student/@Model.UserGuid">Powrót</a>
+    </div>
+</div>

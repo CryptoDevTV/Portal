@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Portal.Shared.Data;
+using Portal.Shared.Data.Db;
 
 namespace Portal.Academia.Web
 {
@@ -19,23 +17,24 @@ namespace Portal.Academia.Web
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-        }
+            services.AddScoped<IDbAccess>(
+                db => new DbAccess(Configuration.GetConnectionString("CdDb")));
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            services.AddTransient<IDataRepository, DataRepository>();
+
+            services
+                .AddControllersWithViews()
+                .AddRazorRuntimeCompilation();
+        }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
+
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -45,8 +44,19 @@ namespace Portal.Academia.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    name: "home",
+                    pattern: "student/{userGuid}",
+                    new { controller = "Home", action = "Student" });
+
+                endpoints.MapControllerRoute(
+                    name: "lessons",
+                    pattern: "lessons/{userGuid}/{courseId}/{lessonId}",
+                    new { controller = "Lessons", action = "Index" });
+
+                endpoints.MapControllerRoute(
+                    name: "modules",
+                    pattern: "{controller=Modules}/{action=Show}/{userGuid}/{courseId}"
+                    );
             });
         }
     }
