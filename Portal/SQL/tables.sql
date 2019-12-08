@@ -27,5 +27,7 @@ CREATE TABLE Lessons(
 	[LessonId] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	[ModuleId] [int] REFERENCES Modules(ModuleId),
 	[Name] nvarchar(128) NOT NULL,
-	[ContentUrl] nvarchar(128) NOT NULL
+	[ContentUrl] nvarchar(128) NOT NULL,
+	[ContentRawUrl] nvarchar(128) NULL,
+	[Duration] nvarchar(20) NOT NULL
 )

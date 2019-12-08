@@ -69,7 +69,9 @@ namespace Portal.Shared.Data
                         module.Lessons = await c.QueryAsync<Lesson>(@"SELECT 
                             L.LessonId,
                             L.Name,
-                            L.ContentUrl
+                            L.ContentUrl,
+                            L.ContentRawUrl,
+                            L.Duration 
                             FROM Lessons as L 
                             WHERE L.ModuleId = @ModuleId",
                             new
@@ -91,7 +93,9 @@ namespace Portal.Shared.Data
                     L.LessonId,
                     L.Name,
                     L.ContentUrl,
-                    C.CourseId
+                    L.ContentRawUrl,
+                    L.Duration,
+                    C.CourseId 
                     FROM Courses as C 
                     INNER JOIN UserCourses UC ON C.CourseId = UC.CourseId
                     INNER JOIN Users U ON UC.UserId = U.UserId

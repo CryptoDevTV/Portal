@@ -1,6 +1,5 @@
 ﻿@model Portal.Academia.Web.ViewModels.ModulesViewModel
 
-
 @if (Model.IsOk)
 {
     foreach (var module in Model.Modules)
@@ -22,7 +21,7 @@
                         <ul class="list-group list-group-flush float-left">
                             @foreach (var lesson in module.Lessons)
                             {
-                                <li class="list-group-item"><a href="/lessons/@Model.UserGuid/@Model.CourseId/@lesson.LessonId" target="_self">@lesson.Name</a></li>
+                                <li class="list-group-item"><a href="/lessons/@Model.UserGuid/@Model.CourseId/@lesson.LessonId" target="_self">@lesson.Name</a> <span class="badge badge-secondary float-right">@lesson.Duration</span></li>
                             }
                         </ul>
                     }
@@ -38,8 +37,6 @@ else
         @Model.Message
     </div>
 }
-
-
 
 <hr />
 

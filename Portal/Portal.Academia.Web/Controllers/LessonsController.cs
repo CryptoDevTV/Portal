@@ -34,6 +34,7 @@ namespace Portal.Academia.Web.Controllers
                 {
                     result.ContentUrl = lesson.ContentUrl;
                     result.Name = lesson.Name;
+
                     result.CourseId = courseId;
                 }
             }
