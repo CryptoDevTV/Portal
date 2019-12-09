@@ -36,8 +36,9 @@ namespace Portal.Web
                 .AddRazorPages()
                 .AddRazorPagesOptions(options =>
                 {
-                    options.Conventions.AddPageRoute("/Course", "kurs/{id}/{name}");
+                    options.Conventions.AddPageRoute("/course", "kurs/{id}/{name}");
                     options.Conventions.AddPageRoute("/contact", "kontakt/{contacttype}");
+                    options.Conventions.AddPageRoute("/policy", "polityka-prywatnosci");
                 })
                 .AddRazorRuntimeCompilation();
         }
