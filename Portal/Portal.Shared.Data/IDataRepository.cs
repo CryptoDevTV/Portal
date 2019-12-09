@@ -9,6 +9,7 @@ namespace Portal.Shared.Data
 {
     public interface IDataRepository
     {
+        Task<User> GetUserInfoAsync(string userGuid);
         Task<IEnumerable<Course>> GetAllCoursesByUserGuidAsync(string userGuid);
         Task<IEnumerable<Module>> GetAllModulesByUserGuidAndModuleIdAsync(string userGuid, int courseId);
         Task<Lesson> GetLessonByUserGuidAndLessonId(string userGuid, int lessonId);
@@ -106,6 +107,23 @@ namespace Portal.Shared.Data
                     {
                         Guid = userGuid,
                         LessonId = lessonId
+                    });
+            }
+        }
+
+        public async Task<User> GetUserInfoAsync(string userGuid)
+        {
+            using (var c = _dbAccess.Connection)
+            {
+                return await c.QueryFirstOrDefaultAsync<User>(@"SELECT 
+                    U.UserId,
+                    U.Email,
+                    U.Guid 
+                    FROM Users U 
+                    WHERE U.Guid = @Guid",
+                    new
+                    {
+                        Guid = userGuid
                     });
             }
         }

@@ -15,5 +15,8 @@ namespace Portal.Shared.Model.Domain
 
         [Description("Powiadomienie o dostępności - GitHub dla inwestorów")]
         Notification = 10,
+
+        [Description("Pytanie z serwisu Academia CryptoDev.TV")]
+        AcademiaMain = 100,
     }
 }

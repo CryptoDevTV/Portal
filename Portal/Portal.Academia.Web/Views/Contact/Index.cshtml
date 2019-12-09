@@ -1,0 +1,46 @@
+﻿@model Portal.Academia.Web.ViewModels.ContactViewModel
+
+@if (Model.IsOk)
+{
+
+    <h1>Formularz kontaktowy</h1>
+    <p class="lead">Masz pytania lub jeśli po prostu chcesz się ze mną skontaktować, użyj poniższego formularza.</p>
+
+    <form class="was-validated" method="post">
+        <div class="form-group row">
+            <label for="f-email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-6">
+                <input type="email" value="@Model.UserEmail" id="f-email" name="email" class="form-control" aria-describedby="f-email-help" readonly>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="f-subject" class="col-sm-2 col-form-label">Temat</label>
+            <div class="col-sm-6">
+                <input type="text" value="@Model.Subject" id="f-subject" name="subject" class="form-control" aria-describedby="f-subject-help" readonly>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="f-msg" class="col-sm-2 col-form-label">Wiadomość</label>
+            <div class="col-sm-6">
+                <textarea type="text" id="f-msg" name="emailcontent" class="form-control" aria-describedby="f-msg-help">@Model.EmailContent</textarea>
+            </div>
+        </div>
+
+        <input type="hidden" id="f-contacttype" value="@Model.ContactType" class="form-control" name="contacttype">
+        <input type="hidden" id="f-contacttype" value="@Model.UserEmail" class="form-control" name="useremail">
+
+        <div class="btn-group offset-sm-2" role="group">
+            <button type="submit" class="btn btn-primary btn-outline-success" id="btn-f-create">Wyślij</button>
+            <button type="button" class="btn btn-secondary" onclick="javascript:window.history.back();">Anuluj</button>
+        </div>
+    </form>
+
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        @Model.Message
+    </div>
+}

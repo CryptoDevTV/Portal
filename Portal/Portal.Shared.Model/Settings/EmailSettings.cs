@@ -1,4 +1,4 @@
-﻿namespace Portal.Web.Settings
+﻿namespace Portal.Shared.Model.Settings
 {
     public class EmailSettings
     {

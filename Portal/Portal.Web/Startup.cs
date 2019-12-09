@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Portal.Shared.Model.Settings;
 using Portal.Shared.Services.Notifications;
-using Portal.Web.Settings;
 
 namespace Portal.Web
 {

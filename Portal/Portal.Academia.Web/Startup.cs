@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Portal.Shared.Data;
 using Portal.Shared.Data.Db;
+using Portal.Shared.Model.Settings;
+using Portal.Shared.Services.Notifications;
 
 namespace Portal.Academia.Web
 {
@@ -19,6 +21,19 @@ namespace Portal.Academia.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var emailSettingsSection = Configuration.GetSection("EmailSettings");
+            services.Configure<EmailSettings>(emailSettingsSection);
+
+            var emailSettings = emailSettingsSection.Get<EmailSettings>();
+
+            services
+                .AddScoped<IEmailNotification>(
+                    db => new EmailNotification(
+                        apiKey: emailSettings.ApiKey,
+                        sender: emailSettings.Sender,
+                        replyTo: emailSettings.ReplyTo,
+                        host: emailSettings.Host));
+
             services.AddScoped<IDbAccess>(
                 db => new DbAccess(Configuration.GetConnectionString("CdDb")));
 
@@ -62,6 +77,11 @@ namespace Portal.Academia.Web
                     name: "modules",
                     pattern: "{controller=Modules}/{action=Show}/{userGuid}/{courseId}"
                     );
+
+                endpoints.MapControllerRoute(
+                    name: "contact",
+                    pattern: "contact/{userGuid}/{contactId}",
+                    new { controller = "Contact", action = "Index" });
             });
         }
     }

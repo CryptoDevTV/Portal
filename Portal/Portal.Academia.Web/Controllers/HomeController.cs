@@ -25,22 +25,31 @@ namespace Portal.Academia.Web.Controllers
 
             if (!string.IsNullOrWhiteSpace(userGuid))
             {
-                result.Courses = await _dataRepository.GetAllCoursesByUserGuidAsync(userGuid);
-                result.UserGuid = userGuid;
-                _logger.LogInformation($"Dane dla {userGuid}");
+                var user = await _dataRepository.GetUserInfoAsync(userGuid);
+
+                if(user is null)
+                {
+                    result.Message = $"Brak użytkownika dla {userGuid}!";
+                    _logger.LogWarning(result.Message);
+                }
+                else
+                {
+                    result.Courses = await _dataRepository.GetAllCoursesByUserGuidAsync(userGuid);
+                    result.UserGuid = userGuid;
+                    result.UserEmail = user.Email;
+                    _logger.LogInformation($"Dane dla {userGuid}");
+                }
             }
             else
             {
                 result.Message = "Proszę o podanie identyfikatora użytkownika!";
-                _logger.LogWarning("Nie podano identyfikatora użytkownika");
+                _logger.LogWarning(result.Message);
             }
 
             return View(result);
         }
 
         public IActionResult Policy()
-        {
-            return View();
-        }
+            => View();
     }
 }
