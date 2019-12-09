@@ -49,6 +49,11 @@ namespace Portal.Academia.Web
                     new { controller = "Home", action = "Student" });
 
                 endpoints.MapControllerRoute(
+                    name: "home",
+                    pattern: "polityka-prywatnosci",
+                    new { controller = "Home", action = "Policy" });
+
+                endpoints.MapControllerRoute(
                     name: "lessons",
                     pattern: "lessons/{userGuid}/{courseId}/{lessonId}",
                     new { controller = "Lessons", action = "Index" });

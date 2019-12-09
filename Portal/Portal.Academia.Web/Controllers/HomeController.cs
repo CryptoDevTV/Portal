@@ -37,5 +37,10 @@ namespace Portal.Academia.Web.Controllers
 
             return View(result);
         }
+
+        public IActionResult Policy()
+        {
+            return View();
+        }
     }
 }
