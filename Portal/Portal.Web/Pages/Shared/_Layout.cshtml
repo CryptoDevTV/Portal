@@ -24,6 +24,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" href="/kontakt/0">Kontakt</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/Newsletter">💰 Newsletter 💰</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -37,7 +40,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2019 - <a href="https://kownet.info">kownet.info</a> - tworzenie oprogramowania. Zapoznaj się z naszą <a href="/polityka-prywatnosci">polityką prywatności</a>.
+            &copy; 2020 - <a href="https://kownet.info">kownet.info</a> - tworzenie oprogramowania. Zapoznaj się z naszą <a href="/polityka-prywatnosci">polityką prywatności</a>.
         </div>
     </footer>
 
@@ -46,6 +49,21 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    <!-- MailerLite Universal -->
+    <script>
+        (function (m, a, i, l, e, r) {
+        m['MailerLiteObject'] = e; function f() {
+            var c = { a: arguments, q: [] }; var r = this.push(c); return "number" != typeof r ? r : f.bind(c.q);
+        }
+            f.q = f.q || []; m[e] = m[e] || f.bind(f.q); m[e].q = m[e].q || f.q; r = a.createElement(i);
+            var _ = a.getElementsByTagName(i)[0]; r.async = 1; r.src = l + '?v' + (~~(new Date().getTime() / 1000000));
+            _.parentNode.insertBefore(r, _);
+        })(window, document, 'script', 'https://static.mailerlite.com/js/universal.js', 'ml');
+
+        var ml_account = ml('accounts', '1434874', 'b8s5j4x9l9', 'load');
+    </script>
+    <!-- End MailerLite Universal -->
 
     @RenderSection("Scripts", required: false)
 </body>
