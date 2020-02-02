@@ -24,7 +24,11 @@
                         </p>
                     </div>
                     <div class="card-footer">
-                        <a href="/modules/show/@Model.UserGuid/@course.CourseId" class="btn btn-primary btn-sm btn-outline-success">Wyświetl</a>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a href="/modules/show/@Model.UserGuid/@course.CourseId" type="button" class="btn btn-primary btn-sm btn-outline-success">Wyświetl</a>
+                            <a href="@course.PathMp4" type="button" class="btn btn-secondary btn-sm">Pobierz Wideo</a>
+                            <a href="@course.PathMp3" type="button" class="btn btn-info btn-sm">Pobierz Mp3</a>
+                        </div>
                     </div>
                 </div>
             </div>

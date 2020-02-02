@@ -11,7 +11,7 @@
                         @module.Name
                     </div>
                     <div class="card-body">
-                        
+
                         <p class="card-text text-justify font-italic">
                             @module.Description
                         </p>
@@ -21,7 +21,14 @@
                         <ul class="list-group list-group-flush float-left">
                             @foreach (var lesson in module.Lessons)
                             {
-                                <li class="list-group-item"><a href="/lessons/@Model.UserGuid/@Model.CourseId/@lesson.LessonId" target="_self">@lesson.Name</a> <span class="badge badge-secondary float-right">@lesson.Duration</span></li>
+                            <li class="list-group-item">
+                                <a href="/lessons/@Model.UserGuid/@Model.CourseId/@lesson.LessonId" target="_self">@lesson.Name</a>
+                                <span class="badge badge-secondary float-right">@lesson.Duration</span>
+                                @if (!string.IsNullOrWhiteSpace(lesson.ContentRawUrl))
+                                {
+                                    <a href="@lesson.ContentRawUrl" target="_blank" class="badge badge-dark float-right mr-1">Pobierz</a>
+                                }
+                            </li>
                             }
                         </ul>
                     }

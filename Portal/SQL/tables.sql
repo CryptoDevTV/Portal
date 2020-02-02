@@ -7,7 +7,9 @@ CREATE TABLE Users(
 CREATE TABLE Courses(
 	[CourseId] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	[Name] nvarchar(128) NOT NULL,
-	[Description] varchar(255) NOT NULL
+	[Description] varchar(255) NOT NULL,
+	[PathMp3] varchar(255) NULL,
+	[PathMp4] varchar(255) NULL
 )
 
 CREATE TABLE UserCourses(

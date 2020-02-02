@@ -32,7 +32,9 @@ namespace Portal.Shared.Data
                 return await c.QueryAsync<Course>(@"SELECT 
                     C.CourseId,
                     C.Name,
-                    C.Description
+                    C.Description,
+                    C.PathMp3,
+                    C.PathMp4 
                     FROM Courses as C 
                     INNER JOIN UserCourses UC ON C.CourseId = UC.CourseId
                     INNER JOIN Users U ON UC.UserId = U.UserId
