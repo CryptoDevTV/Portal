@@ -39,6 +39,7 @@ namespace Portal.Web
                     options.Conventions.AddPageRoute("/course", "kurs/{id}/{name}");
                     options.Conventions.AddPageRoute("/contact", "kontakt/{contacttype}");
                     options.Conventions.AddPageRoute("/policy", "polityka-prywatnosci");
+                    options.Conventions.AddPageRoute("/partnership", "wspolpraca");
                 })
                 .AddRazorRuntimeCompilation();
         }
