@@ -1,0 +1,19 @@
+﻿@page
+@model ConfirmationModel
+
+<div class="container">
+    <h1>Potwierdzenie</h1>
+    <p class="lead">Zamawiający: <i>@Model.UserRegister</i></p>
+
+    <form method="POST" action="https://btcpayjungle.com/apps/3Fpd2dQNdTe4GjmirLPWBjwVsM8i/pos" class="btcpay-form btcpay-form--block">
+        <input type="hidden" name="email" value="@Model.UserRegister" />
+        <input type="hidden" name="orderId" value="@Model.UserGuid" />
+        <input type="hidden" name="notificationUrl" value="https://example.com/callbacks" />
+        <input type="hidden" name="redirectUrl" value="https://app.cryptodev.tv/student/@Model.UserGuid" />
+
+        <div class="btn-group" role="group">
+            <button type="submit" name="choiceKey" value="gdi" class="btn btn-primary btn-outline-success">Przejdź do płatności</button>
+            <a type="button" class="btn btn-secondary" href="/">Anuluj</a>
+        </div>
+    </form>
+</div>

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Portal.Shared.Data;
+using Portal.Shared.Data.Db;
 using Portal.Shared.Model.Settings;
 using Portal.Shared.Services.Notifications;
 
@@ -19,6 +21,8 @@ namespace Portal.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             var emailSettingsSection = Configuration.GetSection("EmailSettings");
             services.Configure<EmailSettings>(emailSettingsSection);
 
@@ -32,6 +36,11 @@ namespace Portal.Web
                         replyTo: emailSettings.ReplyTo,
                         host: emailSettings.Host));
 
+            services.AddScoped<IDbAccess>(
+                db => new DbAccess(Configuration.GetConnectionString("CdDb")));
+
+            services.AddTransient<IDataRepository, DataRepository>();
+
             services
                 .AddRazorPages()
                 .AddRazorPagesOptions(options =>
@@ -40,6 +49,9 @@ namespace Portal.Web
                     options.Conventions.AddPageRoute("/contact", "kontakt/{contacttype}");
                     options.Conventions.AddPageRoute("/policy", "polityka-prywatnosci");
                     options.Conventions.AddPageRoute("/partnership", "wspolpraca");
+                    options.Conventions.AddPageRoute("/shop", "sklep");
+                    options.Conventions.AddPageRoute("/order", "zamowienie");
+                    options.Conventions.AddPageRoute("/confirmation", "potwierdzenie");
                 })
                 .AddRazorRuntimeCompilation();
         }
@@ -54,6 +66,11 @@ namespace Portal.Web
             {
                 app.UseExceptionHandler("/Error");
             }
+
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseStaticFiles();
 

@@ -1,0 +1,21 @@
+﻿@page
+@model OrderModel
+
+<div class="container">
+    <h1>Formularz zamówienia</h1>
+    <p class="lead">Preferuje płatność w BTC, jeśli chcesz zapłacić tradycyjną metodą <a href="/kontakt/90" class="">napisz do mnie</a>.</p>
+
+    <form class="was-validated" method="post">
+        <div class="form-group row">
+            <label for="f-email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-6">
+                <input type="email" id="f-email" name="email" class="form-control" aria-describedby="f-email-help" required>
+            </div>
+        </div>
+        <div class="btn-group offset-sm-2" role="group">
+            <button type="submit" class="btn btn-primary btn-outline-success" id="btn-f-create">Wyślij</button>
+            <button type="button" class="btn btn-secondary" onclick="javascript:window.history.back();">Anuluj</button>
+        </div>
+    </form>
+
+</div>

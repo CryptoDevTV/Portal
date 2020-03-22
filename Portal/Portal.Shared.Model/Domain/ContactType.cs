@@ -37,6 +37,9 @@ namespace Portal.Shared.Model.Domain
         [Description("Reklama - Other")]
         AdvOther = 26,
 
+        [Description("Inna metoda płatności")]
+        OtherPaymentMethod = 90,
+
         [Description("Pytanie z serwisu Academia CryptoDev.TV")]
         AcademiaMain = 100,
     }

@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Portal.Shared.Data.Db;
 using Portal.Shared.Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +10,9 @@ namespace Portal.Shared.Data
 {
     public interface IDataRepository
     {
+        Task<int> CreateUserAsync(User user);
         Task<User> GetUserInfoAsync(string userGuid);
+        Task<User> GetUserAsync(string userEmail);
         Task<IEnumerable<Course>> GetAllCoursesByUserGuidAsync(string userGuid);
         Task<IEnumerable<Module>> GetAllModulesByUserGuidAndModuleIdAsync(string userGuid, int courseId);
         Task<Lesson> GetLessonByUserGuidAndLessonId(string userGuid, int lessonId);
@@ -23,6 +26,21 @@ namespace Portal.Shared.Data
             IDbAccess dbAccess)
         {
             _dbAccess = dbAccess;
+        }
+
+        public async Task<int> CreateUserAsync(User user)
+        {
+            using (var c = _dbAccess.Connection)
+            {
+                return await c.ExecuteAsync(
+                    @"INSERT INTO Users (Email, Guid) VALUES(@Email, @Guid);
+                    SELECT CAST(SCOPE_IDENTITY() as int)",
+                    new
+                    {
+                        Email = user.Email.ToLowerInvariant(),
+                        Guid = Guid.NewGuid().ToString()
+                    });
+            }
         }
 
         public async Task<IEnumerable<Course>> GetAllCoursesByUserGuidAsync(string userGuid)
@@ -109,6 +127,23 @@ namespace Portal.Shared.Data
                     {
                         Guid = userGuid,
                         LessonId = lessonId
+                    });
+            }
+        }
+
+        public async Task<User> GetUserAsync(string userEmail)
+        {
+            using (var c = _dbAccess.Connection)
+            {
+                return await c.QueryFirstOrDefaultAsync<User>(@"SELECT 
+                    U.UserId,
+                    U.Email,
+                    U.Guid 
+                    FROM Users U 
+                    WHERE U.Email = @Email",
+                    new
+                    {
+                        Email = userEmail
                     });
             }
         }
