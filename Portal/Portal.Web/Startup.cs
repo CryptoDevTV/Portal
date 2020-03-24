@@ -36,6 +36,18 @@ namespace Portal.Web
                         replyTo: emailSettings.ReplyTo,
                         host: emailSettings.Host));
 
+            var pushSettingsSection = Configuration.GetSection("PushoverSettings");
+            services.Configure<PushoverSettings>(pushSettingsSection);
+
+            var pushoverSettings = pushSettingsSection.Get<PushoverSettings>();
+
+            services
+                .AddScoped<IPushoverNotification>(
+                    db => new PushoverNotification(
+                        token: pushoverSettings.Token,
+                        recipients: pushoverSettings.Recipients,
+                        endpoint: pushoverSettings.Endpoint));
+
             services.AddScoped<IDbAccess>(
                 db => new DbAccess(Configuration.GetConnectionString("CdDb")));
 
