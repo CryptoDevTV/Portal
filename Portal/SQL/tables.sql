@@ -33,3 +33,12 @@ CREATE TABLE Lessons(
 	[ContentRawUrl] nvarchar(128) NULL,
 	[Duration] nvarchar(20) NOT NULL
 )
+
+CREATE TABLE Orders(
+	[OrderId] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	[OrderMnemonic] nvarchar(64) NOT NULL,
+	[Email] nvarchar(128) NOT NULL,
+	[Status] nvarchar(24) NOT NULL,
+	[BtcPrice] nvarchar(24) NOT NULL,
+	[Rate] nvarchar(24) NOT NULL
+)

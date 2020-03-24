@@ -2,6 +2,6 @@
 {
     public class Payment
     {
-        public int BTC { get; set; }
+        public double BTC { get; set; }
     }
 }

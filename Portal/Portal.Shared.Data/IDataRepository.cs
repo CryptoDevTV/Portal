@@ -16,6 +16,8 @@ namespace Portal.Shared.Data
         Task<IEnumerable<Course>> GetAllCoursesByUserGuidAsync(string userGuid);
         Task<IEnumerable<Module>> GetAllModulesByUserGuidAndModuleIdAsync(string userGuid, int courseId);
         Task<Lesson> GetLessonByUserGuidAndLessonId(string userGuid, int lessonId);
+        Task<int> CreateOrderHistoryAsync(Order order);
+        Task<int> AddUserToCourseAsync(UserCourse userCourse);
     }
 
     public class DataRepository : IDataRepository
@@ -26,6 +28,40 @@ namespace Portal.Shared.Data
             IDbAccess dbAccess)
         {
             _dbAccess = dbAccess;
+        }
+
+        public async Task<int> AddUserToCourseAsync(UserCourse userCourse)
+        {
+            using (var c = _dbAccess.Connection)
+            {
+                return await c.ExecuteAsync(
+                    @"INSERT INTO UserCourses (UserId, CourseId, IsPurchased) VALUES (@UserId, @CourseId, @IsPurchased);
+                    SELECT CAST(SCOPE_IDENTITY() as int)",
+                    new
+                    {
+                        userCourse.UserId,
+                        userCourse.CourseId,
+                        IsPurchased = true
+                    });
+            }
+        }
+
+        public async Task<int> CreateOrderHistoryAsync(Order order)
+        {
+            using (var c = _dbAccess.Connection)
+            {
+                return await c.ExecuteAsync(
+                    @"INSERT INTO Orders (OrderMnemonic, Email, Status, BtcPrice, Rate) VALUES (@OrderMnemonic, @Email, @Status, @BtcPrice, @Rate);
+                    SELECT CAST(SCOPE_IDENTITY() as int)",
+                    new
+                    {
+                        order.OrderMnemonic,
+                        Email = order.Email.ToLowerInvariant(),
+                        order.Status,
+                        order.BtcPrice,
+                        order.Rate
+                    });
+            }
         }
 
         public async Task<int> CreateUserAsync(User user)
