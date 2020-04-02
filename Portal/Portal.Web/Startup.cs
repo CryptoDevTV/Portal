@@ -64,6 +64,7 @@ namespace Portal.Web
                     options.Conventions.AddPageRoute("/shop", "sklep");
                     options.Conventions.AddPageRoute("/order", "zamowienie");
                     options.Conventions.AddPageRoute("/confirmation", "potwierdzenie");
+                    options.Conventions.AddPageRoute("/report", "raporty");
                 })
                 .AddRazorRuntimeCompilation();
         }
