@@ -13,6 +13,9 @@ namespace Portal.Shared.Model.Domain
         [Description("Rezerwacja pakietu Premium")]
         Premium = 2,
 
+        [Description("Mentoring - nauka z CryptoDev")]
+        Mentoring = 3,
+
         [Description("Powiadomienie o dostępności - GitHub dla inwestorów")]
         Notification = 10,
 
